@@ -1,4 +1,5 @@
 const inquirer = require('inquirer');
+const shapeCode = require('./lib/shape.js');
 
 inquirer
 .prompt (
@@ -15,7 +16,8 @@ inquirer
     {
     type:'list',
     name:'shape',
-    message:'Choose a shape'
+    message:'Choose a shape',
+    choices: []
 } ,
 {
     type:'input',
