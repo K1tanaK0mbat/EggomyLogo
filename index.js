@@ -1,5 +1,7 @@
 const inquirer = require('inquirer');
-const shapeCode = require('./lib/shape.js');
+const Triangle = require('./lib/Triangle');
+const Square = require('./lib/Square');
+const Circle = require('./lib/Circle');
 
 inquirer
 .prompt (
