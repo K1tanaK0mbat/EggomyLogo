@@ -1,4 +1,7 @@
 const inquirer = require('inquirer');
+const Triangle = require('./lib/Triangle');
+const Square = require('./lib/Square');
+const Circle = require('./lib/Circle');
 
 inquirer
 .prompt (
@@ -15,7 +18,8 @@ inquirer
     {
     type:'list',
     name:'shape',
-    message:'Choose a shape'
+    message:'Choose a shape',
+    choices: []
 } ,
 {
     type:'input',
