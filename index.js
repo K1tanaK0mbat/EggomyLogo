@@ -1,9 +1,6 @@
 const fs = require('fs');
 const inquirer = require('inquirer');
-const { writeFile } = require('fs');
-const Shape = require('./lib/shape.js');
-
-
+const { Shape, Circle, Triangle, Square } = require('./lib/shape');
 
 inquirer
   .prompt([
@@ -28,23 +25,17 @@ inquirer
       name: 'color',
       message: 'For shape color, enter keyword or hex value from here https://developer.mozilla.org/en-US/docs/Web/CSS/named-color',
     },
-])
+  ])
   .then(({ text, textCol, color, shape }) => {
-    this.text = text;
-    this.textCol = textCol;
-    this.color = color;
-    
+    const shapeObject = new (eval(shape))(color, text, textCol);
+    const svgContent = shapeObject.render();
 
-    if (shape === 'Triangle') {
-      shapeObject = new Triangle(this.text, this.textCol, this.color);
-    } else if (shape === 'Square') {
-      shapeObject = new Square(this.text, this.textCol, this.color);
-    } else if (shape === 'Circle') {
-      shapeObject = new Circle(this.text, this.textCol, this.color);
-    }
-    return shapeObject;
-  })
-  .then(() => {
-    writeFile('logo.svg', this.shapeObject.render() ); 
+    fs.writeFile('logo.svg', svgContent, (err) => {
+      if (err) {
+        console.error('Error creating new logo', err);
+      } else {
+        console.log('Your new logo is ready');
+      }
+    });
   })
   .catch((err) => console.log(err));
