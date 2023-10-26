@@ -1,9 +1,7 @@
 const fs = require('fs');
 const inquirer = require('inquirer');
 const { writeFile } = require('fs');
-const Triangle = require('./lib/Triangle');
-const Square = require('./lib/Square');
-const Circle = require('./lib/Circle');
+const Shape = require('./lib/shape.js');
 
 
 
@@ -31,13 +29,12 @@ inquirer
       message: 'For shape color, enter keyword or hex value from here https://developer.mozilla.org/en-US/docs/Web/CSS/named-color',
     },
 ])
-  .then(({ text, textCol, color, shapeChoice }) => {
+  .then(({ text, textCol, color, shape }) => {
     this.text = text;
     this.textCol = textCol;
     this.color = color;
-    shape = shapeChoice;
+    
 
-    let shapeObject;
     if (shape === 'Triangle') {
       shapeObject = new Triangle(this.text, this.textCol, this.color);
     } else if (shape === 'Square') {
