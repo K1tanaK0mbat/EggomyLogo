@@ -1,7 +1,7 @@
 const fs = require('fs');
 const inquirer = require('inquirer');
 const { Shape, Circle, Triangle, Square } = require('./lib/shape');
-const opn = require('opn');
+const open = require('open');
 
 inquirer
   .prompt([
@@ -40,7 +40,7 @@ inquirer
       const svgContent = mySVG.render();
 
 
-    fs.writeFile('logo.svg', svgContent, opn('logo.svg'),(err) => {
+    fs.writeFile('logo.svg', svgContent, open('logo.svg'),(err) => {
       if (err) {
         console.error('Error creating new logo', err);
       } else {
