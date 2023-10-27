@@ -48,3 +48,4 @@ describe('Square', () => {
     expect(matchSVG(square.render())).toEqual(matchSVG(result));
 });
 });
+
