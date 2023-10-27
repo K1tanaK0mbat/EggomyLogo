@@ -1,7 +1,11 @@
 const { Circle, Triangle, Square } = require('../lib/shape.js');
 
+function matchSVG(svg) {
+    return svg.replace(/\s+/g, ' ').trim();
+  }
+
 describe('Circle', () => {
-  it('should return the correct SVG markup for Circle', () => {
+  it('should return the SVG code for rendering Circle', () => {
     const circle = new Circle('blue', 'NJD', 'white');
     const result = `
     <svg version="1.1" width="300" height="200" xmlns="http://www.w3.org/2000/svg">
@@ -11,12 +15,12 @@ describe('Circle', () => {
     </svg>
     `;
 
-    expect(circle.render().trim()).toEqual(result.trim());
+    expect(matchSVG(circle.render())).toEqual(matchSVG(result));
   });
 });
 
 describe('Triangle', () => {
-  it('should return the correct SVG markup for Triangle', () => {
+  it('should return the SVG code for rendering Triangle', () => {
     const triangle = new Triangle('Purple', 'Eye', 'Green');
     const result = `
     <svg version="1.1" width="300" height="200" xmlns="http://www.w3.org/2000/svg">
@@ -26,12 +30,12 @@ describe('Triangle', () => {
     </svg>
     `;
 
-    expect(triangle.render().trim()).toEqual(result.trim());
-  });
+    expect(matchSVG(triangle.render())).toEqual(matchSVG(result));
+});
 });
 
 describe('Square', () => {
-  it('should return the correct SVG markup for Square', () => {
+  it('should return the SVG code for rendering Square', () => {
     const square = new Square('Red', 'LUV', 'Black');
     const result = `
     <svg version="1.1" width="300" height="200" xmlns="http://www.w3.org/2000/svg">
@@ -41,6 +45,6 @@ describe('Square', () => {
     </svg>
     `;
 
-    expect(square.render().trim()).toEqual(result.trim());
-  });
+    expect(matchSVG(square.render())).toEqual(matchSVG(result));
+});
 });
