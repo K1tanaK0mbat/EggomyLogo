@@ -1,7 +1,8 @@
 const fs = require('fs');
 const inquirer = require('inquirer');
 const { Shape, Circle, Triangle, Square } = require('./lib/shape');
-const opn = require('opn');
+
+
 
 inquirer
   .prompt([
@@ -27,7 +28,7 @@ inquirer
       message: 'For shape color, enter keyword or hex value https://developer.mozilla.org/en-US/docs/Web/CSS/named-color',
     },
   ])
-  .then(({ text, textCol, color, shape }) => {
+  .then(async ({ text, textCol, color, shape }) => { // Use async/await
     const shapesMap = {
       'Triangle': Triangle,
       'Square': Square,
@@ -39,14 +40,15 @@ inquirer
       const mySVG = new newShape(color, text, textCol);
       const svgContent = mySVG.render();
 
-
-    fs.writeFile('logo.svg', svgContent, opn('logo.svg'),(err) => {
-      if (err) {
-        console.error('Error creating new logo', err);
-      } else {
+      try {
+        await fs.promises.writeFile('logo.svg', svgContent);
         console.log('Generated logo.svg');
+        // Use dynamic import to load 'open' at runtime
+        const open = (await import('open')).default;
+        open('logo.svg'); // Open the generated file
+      } catch (err) {
+        console.error('Error creating or opening your new logo', err);
       }
-    });
-  }
+    }
   })
   .catch((err) => console.log(err));
