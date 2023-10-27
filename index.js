@@ -27,15 +27,25 @@ inquirer
     },
   ])
   .then(({ text, textCol, color, shape }) => {
-    const shapeObject = new (eval(shape))(color, text, textCol);
-    const svgContent = shapeObject.render();
+    const shapesMap = {
+      'Triangle': Triangle,
+      'Square': Square,
+      'Circle': Circle
+    };
+
+    const newShape = shapesMap[shape];
+    if (newShape) {
+      const mySVG = new newShape(color, text, textCol);
+      const svgContent = mySVG.render();
+
 
     fs.writeFile('logo.svg', svgContent, (err) => {
       if (err) {
         console.error('Error creating new logo', err);
       } else {
-        console.log('Your new logo is ready');
+        console.log('Generated logo.svg');
       }
     });
+  }
   })
   .catch((err) => console.log(err));
