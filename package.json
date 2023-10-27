@@ -20,5 +20,5 @@
   "devDependencies": {
     "jest": "^29.7.0"
   },
-  "description": ""
+  "description": "This application can be used by employees, bussiness owners, and entrepuernears to create a unique but simple logo for their bssiness webpage and/or merch. It utilizes Javascript and XML language to create a SVG file for the user based on their responses to the required questions. The SVG file can the be downloaded and saved for future use, as it is compitable with most applications."
 }
