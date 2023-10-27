@@ -12,7 +12,7 @@ inquirer
     {
       type: 'input',
       name: 'textCol',
-      message: 'For text color, enter keyword or hex value from here https://developer.mozilla.org/en-US/docs/Web/CSS/named-color',
+      message: 'For text color, enter keyword or hex value https://developer.mozilla.org/en-US/docs/Web/CSS/named-color',
     },
     {
       type: 'list',
@@ -23,7 +23,7 @@ inquirer
     {
       type: 'input',
       name: 'color',
-      message: 'For shape color, enter keyword or hex value from here https://developer.mozilla.org/en-US/docs/Web/CSS/named-color',
+      message: 'For shape color, enter keyword or hex value https://developer.mozilla.org/en-US/docs/Web/CSS/named-color',
     },
   ])
   .then(({ text, textCol, color, shape }) => {
